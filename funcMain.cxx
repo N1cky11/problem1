@@ -4,16 +4,31 @@
 
 TEST(outputTest, goodCase) {
 	using std::vector ;
-    EXPECT_EQ(vector<int>{3}, func(vector<int>{0, 1, 2, 3}));
-    EXPECT_EQ(vector<int>{1, 2, 3, 4}, func(vector<int>{4, 3, 2, 1}));
-    EXPECT_EQ(vector<int>{5, 7}, func(vector<int>{0, 7, 3, 5}));
-    EXPECT_EQ(vector<double>{4.4}, func(vector<double>{1.1, 2.2, 3.3}));
-    EXPECT_EQ(vector<double>{5.5, 7.7}, func(vector<double>{0.0, 7.7, 3.3, 5.5}));
+	
+	vector<int> vec=func(vector<int>{0, 1, 2, 3}) ; 
+	vector<int> vecResult={3} ; 
+    EXPECT_EQ(vecResult.size(),vec.size() ) ;
+    for(int i{} ; i!=vec.size() ; ++i) EXPECT_EQ(vec[i],vecResult[i]) ; 
+    
+    vec=func(vector<int>{4,3,2,1}) ; 
+    vecResult=vector<int>{1,2,3,4} ; 
+    EXPECT_EQ(vecResult.size(),vec.size() ) ;
+    for(int i{} ; i!=vec.size() ; ++i) EXPECT_EQ(vec[i],vecResult[i]) ; 
+    
+    vector<double> vec1=func(vector<double>{1.1, 2.2, 3.3,4.4}); 
+    vector<double> vec1Result=vector<double>{4.4} ; 
+    double error=1.e-9 ; 
+    EXPECT_EQ(vecResult.size(),vec.size() ) ;
+    for(int i{} ; i!=vec1.size() ; ++i) EXPECT_NEAR(vec1[i],vec1Result[i],error) ;
 }
  
 TEST(outputTest, badCase) {
 	using std::vector ;
-    EXPECT_EQ(vector<int>{}, func(vector<int>{}));
+	
+	vector<int> vec=func(vector<int>{}) ; 
+	vector<int> vecResult=vector<int>{} ; 
+	EXPECT_EQ(vecResult.size(),vec.size() ) ;
+    for(int i{} ; i!=vec.size() ; ++i) EXPECT_EQ(vec[i],vecResult[i]) ;
 }
 
 int main(int argc, char **argv) {
